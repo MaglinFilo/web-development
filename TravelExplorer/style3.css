@@ -1,0 +1,631 @@
+/* ==============================
+   GENERAL
+================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f8f4ee;
+    color: #333;
+}
+
+.page {
+    display: none;
+    padding: 30px 6%;
+    min-height: 80vh;
+}
+
+.center {
+    text-align: center;
+    margin: 35px 0 20px;
+}
+
+
+/* ==============================
+   HEADER / NAVIGATION
+================================= */
+
+header {
+    background: #5b4636;
+    color: white;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #e8c9a8;
+}
+
+
+/* ==============================
+   HOME HERO
+================================= */
+
+.hero {
+    background: #e8d7c3;
+    padding: 70px 30px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.hero h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+}
+
+
+/* ==============================
+   CATEGORY CARDS
+================================= */
+
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.categories .category {
+    width: 250px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.categories .category:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.categories .category img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+}
+
+.categories .category h3 {
+    text-align: center;
+    padding: 10px;
+}
+
+
+/* ==============================
+   DESTINATION CARDS
+================================= */
+
+.destination {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    width: 250px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+}
+
+.card h3 {
+    padding: 0 15px;
+}
+
+.card button {
+    margin: 10px 15px 20px;
+    padding: 9px 15px;
+    border: none;
+    border-radius: 6px;
+    background: #5b4636;
+    color: white;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background: #80624b;
+}
+
+
+/* ==============================
+   RECOMMENDED BADGE
+================================= */
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #6b8e23;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* ==============================
+   SEARCH BOX
+================================= */
+
+#searchBox {
+    display: block;
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto 30px;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+}
+
+#searchBox:focus {
+    border-color: #9b795c;
+    background: #fffaf4;
+}
+
+
+/* ==============================
+   DETAILS PAGE
+================================= */
+
+.heroPlace {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: #e8d7c3;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.heroPlace img {
+    width: 45%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.heroText h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.heroText p {
+    font-size: 18px;
+}
+
+
+/* ==============================
+   DETAILS INFO CARDS
+================================= */
+
+.infoGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.infoCard {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.infoCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+.infoCard h3 {
+    color: #5b4636;
+    font-size: 16px;
+}
+
+.infoCard p {
+    line-height: 1.5;
+}
+
+
+/* ==============================
+   DETAILS TEXT
+================================= */
+
+.detailsText {
+    max-width: 900px;
+    margin: 0 auto 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    line-height: 1.7;
+}
+
+
+/* ==============================
+   MAP
+================================= */
+
+.mapContainer {
+    width: 100%;
+    height: 300px;
+    margin: 30px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.mapContainer iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+/* ==============================
+   BACK BUTTON
+================================= */
+
+.backBtn {
+    display: block;
+    margin: 30px auto;
+    padding: 10px 20px;
+    background: #5b4636;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.backBtn:hover {
+    background: #80624b;
+}
+
+
+/* ==============================
+   GUIDE PAGE
+================================= */
+
+#guide {
+    max-width: 800px;
+    margin: auto;
+}
+
+#guide h2 {
+    text-align: center;
+    color: #5b4636;
+    margin-bottom: 30px;
+}
+
+#guide form {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+#guide form p {
+    font-weight: bold;
+    color: #5b4636;
+    margin-top: 20px;
+}
+
+#guide input[type="text"],
+#guide input[type="email"],
+#guide input[type="tel"],
+#guide input[type="file"],
+#guide select,
+#guide textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    outline: none;
+    font-size: 15px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#guide input:focus,
+#guide select:focus,
+#guide textarea:focus {
+    border-color: #9b795c;
+    background-color: #fff8ef;
+}
+
+#guide textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#guide input[type="radio"],
+#guide input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+#guide button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 7px;
+    background: #5b4636;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+#guide button:hover {
+    background: #80624b;
+}
+
+
+/* ==============================
+   ABOUT PAGE
+================================= */
+
+#about {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+#about h2 {
+    color: #5b4636;
+}
+
+#about p {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    line-height: 1.8;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+
+/* ==============================
+   CONTACT PAGE
+================================= */
+
+#contact {
+    max-width: 1100px;
+    margin: auto;
+}
+
+#contact > h2 {
+    text-align: center;
+    color: #5b4636;
+    margin-bottom: 30px;
+}
+
+.contactWrapper {
+    display: flex;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+
+/* Message Section */
+
+.contactMessage {
+    flex: 1 1 450px;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.contactMessage h3 {
+    color: #5b4636;
+}
+
+.contactMessage textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+    outline: none;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.contactMessage textarea:focus {
+    border-color: #9b795c;
+    background-color: #fff8ef;
+}
+
+#submitContact {
+    margin-top: 15px;
+    padding: 11px 25px;
+    border: none;
+    border-radius: 7px;
+    background: #5b4636;
+    color: white;
+    cursor: pointer;
+}
+
+#submitContact:hover {
+    background: #80624b;
+}
+
+
+/* Star Rating */
+
+.starRating {
+    display: flex;
+    gap: 5px;
+    margin-top: 15px;
+    font-size: 28px;
+}
+
+.star {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star:hover,
+.star.selected,
+.star.hovered {
+    color: #d6a800;
+}
+
+
+/* Contact Information */
+
+.contactInfo {
+    flex: 1 1 350px;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.contactInfo h3 {
+    color: #5b4636;
+    margin-top: 0;
+}
+
+.contactInfo p {
+    line-height: 1.8;
+}
+
+.contactInfo a {
+    color: #5b4636;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.contactInfo a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==============================
+   FOOTER
+================================= */
+
+footer {
+    background: #5b4636;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+
+/* ==============================
+   RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 900px) {
+
+    .infoGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .heroPlace {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .heroPlace img {
+        width: 100%;
+        height: 280px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .page {
+        padding: 20px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .infoGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .categories .category,
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .heroPlace img {
+        height: 220px;
+    }
+
+    .heroText h1 {
+        font-size: 28px;
+    }
+
+    #searchBox {
+        width: 100%;
+    }
+
+}

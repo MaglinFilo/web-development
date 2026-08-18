@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Travel Explorer</title>
+<link rel="stylesheet" href="style3.css">
+</head>
+
+<body>
+
+<header>
+<h2>Travel Explorer</h2>
+
+<nav>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('explore')">Explore</a>
+<a onclick="showPage('guide')">Guide</a>
+<a onclick="showPage('about')">About</a>
+</nav>
+</header>
+
+
+<!-- HOME PAGE -->
+
+<section id="home" class="page">
+
+<div class="hero">
+<h1>Welcome to Travel Planning Guide</h1>
+<p>Plan your visit to Tamil Nadu based on season</p>
+</div>
+
+<h2 class="center">Categories</h2>
+
+<div class="category">
+
+<div class="categories">
+
+<div class="category" onclick="openCategory('waterfall')">
+<img src="waterfall.jpeg">
+<h3>Waterfalls</h3>
+</div>
+
+<div class="category" onclick="openCategory('hill')">
+<img src="hill.jpeg">
+<h3>Hill Stations</h3>
+</div>
+
+<div class="category" onclick="openCategory('temple')">
+<img src="temple.jpeg">
+<h3>Heritage</h3>
+</div>
+</div>
+</div>
+
+
+<h2 class="center">Best Places This Month</h2>
+
+<div class="destination">
+
+<div class="card"  onclick="showDetails('kodaikanal')">
+<img src="kodaikanal.jpeg">
+<h3>Kodaikanal</h3>
+</div>
+
+<div class="card" onclick="showDetails('rameshwaram')">
+<img src="rameshwaram.jpeg">
+<h3>Rameshwaram</h3>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EXPLORE PAGE -->
+
+
+
+
+
+<section id="explore" class="page">
+
+<h2 class="center">Explore Destinations</h2>
+
+<input type="text" id="searchBox" placeholder="Search destination..." onkeyup="searchPlace()">
+
+
+<div class="destination">
+
+<div class="card hill ">
+<img src="ooty.jpeg">
+<h3>Ooty</h3>
+<button onclick="showDetails('ooty')">View Details</button>
+</div>
+
+<div class="card hill ">
+<img src="kodaikanal.jpeg">
+<h3>Kodaikanal</h3>
+<button onclick="showDetails('kodaikanal')">View Details</button>
+</div>
+
+<div class="card hill ">
+<img src="yercaud.jpeg">
+<h3>Yercaud</h3>
+<button onclick="showDetails('yercaud')">View Details</button>
+</div>
+
+<div class="card hill ">
+<img src="coonoor.jpeg">
+<h3>Coonoor</h3>
+<button onclick="showDetails('coonoor')">View Details</button>
+</div>
+
+<div class="card temple">
+<img src="rameshwaram.jpeg">
+<h3>Rameshwaram</h3>
+<button onclick="showDetails('rameshwaram')">View Details</button>
+</div>
+
+<div class="card temple ">
+<img src="madurai.jpeg">
+<h3>Madurai Meenakshi Temple</h3>
+<button onclick="showDetails('madurai')">View Details</button>
+</div>
+
+<div class="card temple">
+<img src="chidambaram.jpeg">
+<h3>Chidambaram Nataraja Temple</h3>
+<button onclick="showDetails('chidambaram')">View Details</button>
+</div>
+
+<div class="card temple ">
+<img src="kanchipuram.jpeg">
+<h3>Kanchipuram Ekambareswarar Temple</h3>
+<button onclick="showDetails('kanchipuram')">View Details</button>
+</div>
+
+<div class="card waterfall ">
+<img src="tada.jpeg">
+<h3>Tada Falls</h3>
+<button onclick="showDetails('tada')">View Details</button>
+</div>
+
+<div class="card waterfall ">
+<img src="courtallam.jpeg">
+<h3>Courtallam</h3>
+<button onclick="showDetails('courtallam')">View Details</button>
+</div>
+
+<div class="card waterfall ">
+<img src="hogenakkal.jpeg">
+<h3>Hogenakkal Falls</h3>
+<button onclick="showDetails('hogenakkal')">View Details</button>
+</div>
+
+<div class="card waterfall  ">
+<img src="suruli.jpeg">
+<h3>Suruli Falls</h3>
+<button onclick="showDetails('suruli')">View Details</button>
+</div>
+
+<div class="card waterfall ">
+<img src="monkey.jpeg">
+<h3>Monkey Falls</h3>
+<button onclick="showDetails('monkeyfalls')">View Details</button>
+</div>
+
+</div>
+
+</section>
+
+<script>
+    var params = new URLSearchParams(window.location.search)
+var category = params.get("category")
+
+if(category){
+
+var cards = document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+
+if(!cards[i].classList.contains(category)){
+cards[i].style.display = "none"
+}
+
+}
+
+}
+</script>
+
+
+<!-- DETAILS PAGE -->
+
+
+
+<section id="details" class="page">
+
+<div class="heroPlace">
+
+<img id="placeImage">
+
+<div class="heroText">
+<h1 id="placeName"></h1>
+<p id="placeLocation"></p>
+</div>
+
+</div>
+
+
+<div class="infoGrid">
+
+<div class="infoCard">
+<h3>Best Months to Visit</h3>
+<p id="bestMonths"></p>
+</div>
+
+<div class="infoCard">
+<h3>Best Time of Day</h3>
+<p id="bestTime"></p>
+</div>
+
+<div class="infoCard">
+<h3>Weather Feel</h3>
+<p id="weather"></p>
+</div>
+
+<div class="infoCard">
+<h3>Crowd Level</h3>
+<p id="crowd"></p>
+</div>
+
+<div class="infoCard">
+<h3>Ideal For</h3>
+<p id="ideal"></p>
+</div>
+
+</div>
+
+
+<h2 class="center">Why this is the Best Time</h2>
+
+<p class="detailsText" id="whyVisit"></p>
+
+
+<h2 class="center">Travel Tip</h2>
+
+<p class="detailsText" id="travelTip"></p>
+
+<button class="backBtn" onclick="showPage('explore')">
+← Back to explore
+</button>
+
+</section>
+
+
+
+
+<!-- GUIDE PAGE -->
+
+<section id="guide" class="page">
+
+<h2>Request a Local Travel Guide</h2>
+
+<form>
+
+<p>Select Destination</p>
+
+<label><input type="radio" name="dest"> Ooty</label>
+<label><input type="radio" name="dest"> Kodaikanal</label>
+<label><input type="radio" name="dest"> Rameshwaram</label>
+
+<p>Preferred Language</p>
+
+<label><input type="radio" name="lang"> Tamil</label>
+<label><input type="radio" name="lang"> English</label>
+
+<p>Travel Type</p>
+
+<select>
+<option>Solo</option>
+<option>Family</option>
+<option>Friends</option>
+</select>
+
+<br><br>
+
+<button type="submit">Submit</button>
+
+</form>
+
+</section>
+
+
+<!-- ABOUT PAGE -->
+
+<section id="about" class="page">
+
+<h2>About</h2>
+
+<p>
+Travel Explorer helps travelers find the best destinations in Tamil Nadu
+based on season, crowd and travel preferences.
+</p>
+
+</section>
+
+
+<script>
+
+
+function showPage(page){
+
+var pages=document.getElementsByClassName("page")
+
+for(var i=0;i<pages.length;i++){
+pages[i].style.display="none"
+}
+
+document.getElementById(page).style.display="block"
+
+}
+
+
+showPage("home")
+
+
+
+function filterType(type){
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+
+if(type=="all"){
+cards[i].style.display="block"
+}
+
+else if(cards[i].classList.contains(type)){
+cards[i].style.display="block"
+}
+
+else{
+cards[i].style.display="none"
+}
+
+}
+
+}
+
+
+
+function filterSeason(season){
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+
+if(cards[i].classList.contains(season)){
+cards[i].style.display="block"
+}
+
+}
+
+}
+
+
+
+function filterTime(time){
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+
+if(time=="all"){
+cards[i].style.display="block"
+}
+
+else if(cards[i].classList.contains(time)){
+cards[i].style.display="block"
+}
+
+else{
+cards[i].style.display="none"
+}
+
+}
+
+}
+
+
+
+function resetFilters(){
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+cards[i].style.display="block"
+}
+
+}
+
+
+
+function searchPlace(){
+
+var input=document.getElementById("searchBox").value.toLowerCase()
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+
+var text=cards[i].innerText.toLowerCase()
+
+if(text.includes(input)){
+cards[i].style.display="block"
+}
+else{
+cards[i].style.display="none"
+}
+
+}
+
+}
+
+function showDetails(place){
+
+showPage("details")
+
+var data={
+
+ooty:{
+image:"ooty.jpeg",
+name:"Ooty",
+location:"Nilgiris District, Tamil Nadu",
+months:"October - June",
+time:"Morning and Evening",
+weather:"Cool Climate",
+crowd:"Moderate",
+ideal:"Nature Lovers, Couples",
+why:"Ooty is one of the most popular hill stations in Tamil Nadu with cool weather, tea gardens and scenic mountain views.",
+tip:"Visit the Botanical Garden and take the Nilgiri Mountain Railway for a scenic ride."
+},
+
+kodaikanal:{
+image:"kodaikanal.jpeg",
+name:"Kodaikanal",
+location:"Dindigul District, Tamil Nadu",
+months:"October - February",
+time:"Morning",
+weather:"Cool and Misty",
+crowd:"Moderate",
+ideal:"Families, Nature Travelers",
+why:"Kodaikanal offers pleasant weather, beautiful lakes and misty hills which make it ideal for sightseeing.",
+tip:"Boating in Kodaikanal Lake early morning gives the best experience."
+},
+
+yercaud:{
+image:"yercaud.jpeg",
+name:"Yercaud",
+location:"Salem District, Tamil Nadu",
+months:"October - June",
+time:"Morning",
+weather:"Pleasant",
+crowd:"Low to Moderate",
+ideal:"Nature Lovers, Families",
+why:"Yercaud is known for coffee plantations and peaceful hill views, making it a calm getaway from city life.",
+tip:"Visit Lady's Seat viewpoint for sunset views."
+},
+
+coonoor:{
+image:"coonoor.jpeg",
+name:"Coonoor",
+location:"Nilgiris District, Tamil Nadu",
+months:"October - May",
+time:"Morning",
+weather:"Cool",
+crowd:"Moderate",
+ideal:"Couples, Nature Lovers",
+why:"Coonoor is famous for tea gardens and scenic viewpoints like Dolphin’s Nose.",
+tip:"Take the Nilgiri toy train ride between Ooty and Coonoor."
+},
+
+rameshwaram:{
+image:"rameshwaram.jpeg",
+name:"Rameshwaram Temple",
+location:"Ramanathapuram District, Tamil Nadu",
+months:"October - March",
+time:"Early Morning",
+weather:"Pleasant to Warm",
+crowd:"High during festivals",
+ideal:"Pilgrims, Heritage Visitors",
+why:"Rameshwaram is one of the holiest pilgrimage sites in India and offers spiritual and historical significance.",
+tip:"Visit the temple early morning to avoid long queues."
+},
+
+madurai:{
+image:"madurai.jpeg",
+name:"Meenakshi Amman Temple",
+location:"Madurai District, Tamil Nadu",
+months:"October - March",
+time:"Morning",
+weather:"Warm",
+crowd:"High",
+ideal:"Pilgrims, Culture Lovers",
+why:"Madurai is famous for the Meenakshi Amman Temple with colorful towers and rich cultural heritage.",
+tip:"Attend the evening temple ceremony for a unique spiritual experience."
+},
+
+chidambaram:{
+image:"chidambaram.jpeg",
+name:"Nataraja Temple",
+location:"Cuddalore District, Tamil Nadu",
+months:"November - February",
+time:"Morning",
+weather:"Pleasant",
+crowd:"Moderate",
+ideal:"Pilgrims, History Lovers",
+why:"Chidambaram temple is dedicated to Lord Shiva as the cosmic dancer and is an important spiritual center.",
+tip:"Explore the temple architecture and nearby heritage streets."
+},
+
+kanchipuram:{
+image:"kanchipuram.jpeg",
+name:"Ekambareswarar Temple",
+location:"Kanchipuram District, Tamil Nadu",
+months:"November - February",
+time:"Morning",
+weather:"Warm",
+crowd:"Moderate",
+ideal:"Pilgrims, Cultural Visitors",
+why:"Kanchipuram is known as the city of thousand temples and is famous for silk sarees and historic temples.",
+tip:"Visit the silk saree markets after temple darshan."
+},
+
+tada:{
+image:"tada.jpeg",
+name:"Tada Falls",
+location:"Andhra Pradesh – Tamil Nadu Border",
+months:"July - October",
+time:"Morning",
+weather:"Cool",
+crowd:"Low",
+ideal:"Trekkers, Adventure Lovers",
+why:"Tada Falls offers a scenic trekking trail leading to a refreshing waterfall surrounded by forest.",
+tip:"Wear trekking shoes as the path can be slippery."
+},
+
+courtallam:{
+image:"courtallam.jpeg",
+name:"Courtallam Falls",
+location:"Tenkasi District, Tamil Nadu",
+months:"June - September",
+time:"Morning",
+weather:"Refreshing",
+crowd:"High during monsoon",
+ideal:"Families, Nature Lovers",
+why:"Courtallam is known as the 'Spa of South India' because of its therapeutic waterfalls.",
+tip:"Visit during monsoon to see the falls at full strength."
+},
+
+hogenakkal:{
+image:"hogenakkal.jpeg",
+name:"Hogenakkal Falls",
+location:"Dharmapuri District, Tamil Nadu",
+months:"October - February",
+time:"Morning",
+weather:"Pleasant",
+crowd:"Moderate",
+ideal:"Adventure Seekers",
+why:"Hogenakkal Falls is often called the 'Niagara of India' due to its powerful waterfalls.",
+tip:"Try the traditional coracle boat ride."
+},
+
+suruli:{
+image:"suruli.jpeg",
+name:"Suruli Falls",
+location:"Theni District, Tamil Nadu",
+months:"June - October",
+time:"Morning",
+weather:"Cool",
+crowd:"Low",
+ideal:"Nature Lovers",
+why:"Suruli Falls is located near the Meghamalai hills and surrounded by forest landscapes.",
+tip:"Carry comfortable walking shoes."
+},
+
+monkeyfalls:{
+image:"monkeyfalls.jpeg",
+name:"Monkey Falls",
+location:"Coimbatore District, Tamil Nadu",
+months:"July - October",
+time:"Morning",
+weather:"Cool",
+crowd:"Moderate",
+ideal:"Families, Tourists",
+why:"Monkey Falls is a beautiful waterfall located near Pollachi and is easily accessible for visitors.",
+tip:"Visit early morning to avoid crowds."
+}
+
+}
+
+ var placeData=data[place]
+
+document.getElementById("placeImage").src=placeData.image
+document.getElementById("placeName").innerText=placeData.name
+document.getElementById("placeLocation").innerText=placeData.location
+document.getElementById("bestMonths").innerText=placeData.months
+document.getElementById("bestTime").innerText=placeData.time
+document.getElementById("weather").innerText=placeData.weather
+document.getElementById("crowd").innerText=placeData.crowd
+document.getElementById("ideal").innerText=placeData.ideal
+document.getElementById("whyVisit").innerText=placeData.why
+document.getElementById("travelTip").innerText=placeData.tip
+
+}
+
+
+function openCategory(type){
+
+showPage("explore")
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+
+if(cards[i].classList.contains(type)){
+cards[i].style.display="block"
+}
+else{
+cards[i].style.display="none"
+}
+
+}
+
+}
+
+
+
+</script>
+
+</body>
+</html>

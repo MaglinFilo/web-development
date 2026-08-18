@@ -1,0 +1,1201 @@
+<!DOCTYPE html><html><head><title>Travel Explorer</title><link rel="stylesheet" href="style3.css"></head><body><header><h2>Travel Explorer</h2><nav><a onclick="showPage('home')">Home</a>
+
+<a onclick="showPage('explore')">Explore</a>
+
+<a onclick="showPage('guide')">Guide</a>
+
+<a onclick="showPage('about')">About</a>
+
+<a onclick="showPage('contact')">contact Us</a>
+
+</nav></header><!-- HOME PAGE --><section id="home" class="page"><div class="hero"><h1>Welcome to Travel Planning Guide</h1><p>Plan your visit to Tamil Nadu based on season</p></div><h2 class="center">Categories</h2><div class="category"><div class="categories"><div class="category" onclick="openCategory('waterfall')"><img src="waterfall.jpeg"><h3>Waterfalls</h3></div><div class="category" onclick="openCategory('hill')"><img src="hill.jpeg"><h3>Hill Stations</h3></div><div class="category" onclick="openCategory('temple')"><img src="temple.jpeg"><h3>Heritage</h3></div></div></div><h2 class="center" id="monthTitle">Best Places This Month</h2><div class="destination"><div class="card"  onclick="showDetails('yercaud')"><img src="yercaud.jpeg"><h3>Yercaud</h3></div><div class="card" onclick="showDetails('coonoor')"><img src="coonoor.jpeg"><h3>Coonoor</h3></div></div></section><!-- EXPLORE PAGE --><section id="explore" class="page"><h2 class="center">Explore Destinations</h2><div class="filterButtons"><button onclick="filterType('all')">All</button>
+
+<button onclick="filterType('hill')">Hill Stations</button>
+
+<button onclick="filterType('waterfall')">Waterfalls</button>
+
+<button onclick="filterType('temple')">Heritage</button>
+
+</div><input type="text" id="searchBox" placeholder="Search destination..." onkeyup="searchPlace()"><div class="destination"><div class="card hill " data-month="Mar, Apr, May, Jun, Sep, Oct, Nov"><span class="badge">Recommended</span>
+
+<img src="ooty.jpeg"><h3>Ooty</h3><button onclick="showDetails('ooty')">View Details</button>
+
+</div><div class="card hill " data-month="Apr, May, Jun, Sep, Oct"><span class="badge">Recommended</span>
+
+<img src="kodaikanal.jpeg"><h3>Kodaikanal</h3><button onclick="showDetails('kodaikanal')">View Details</button>
+
+</div><div class="card hill " data-month="Oct, Nov, Dec, Jan, Feb, Mar, Apr, May, Jun"><span class="badge">Recommended</span>
+
+<img src="yercaud.jpeg"><h3>Yercaud</h3><button onclick="showDetails('yercaud')">View Details</button>
+
+</div><div class="card hill " data-month="Oct, Nov, Dec, Jan, Feb, Mar, Apr, May"><span class="badge">Recommended</span>
+
+<img src="coonoor.jpeg"><h3>Coonoor</h3><button onclick="showDetails('coonoor')">View Details</button>
+
+</div><div class="card temple" data-month=" Oct, Nov, Dec, Jan, Feb, Mar, Apr"><span class="badge">Recommended</span>
+
+<img src="rameshwaram.jpeg"><h3>Rameshwaram</h3><button onclick="showDetails('rameshwaram')">View Details</button>
+
+</div><div class="card temple " data-month="Oct, Nov, Dec, Jan, Feb, Mar"><span class="badge">Recommended</span>
+
+<img src="madurai.jpeg"><h3>Madurai Meenakshi Temple</h3><button onclick="showDetails('madurai')">View Details</button>
+
+</div><div class="card temple" data-month="Nov, Dec, Jan, Feb"><span class="badge">Recommended</span>
+
+<img src="chidambaram.jpeg"><h3>Chidambaram Nataraja Temple</h3><button onclick="showDetails('chidambaram')">View Details</button>
+
+</div><div class="card temple " data-month="Nov, Dec, Jan, Feb"><span class="badge">Recommended</span>
+
+<img src="kanchipuram.jpeg"><h3>Kanchipuram Ekambareswarar Temple</h3><button onclick="showDetails('kanchipuram')">View Details</button>
+
+</div><div class="card waterfall " data-month="Nov, Dec, Jan, Feb"><span class="badge">Recommended</span>
+
+<img src="tada.jpeg"><h3>Tada Falls</h3><button onclick="showDetails('tada')">View Details</button>
+
+</div><div class="card waterfall " data-month="Jun, Jul, Aug, Sep"><span class="badge">Recommended</span>
+
+<img src="courtallam.jpeg"><h3>Courtallam</h3><button onclick="showDetails('courtallam')">View Details</button>
+
+</div><div class="card waterfall " data-month="Oct, Nov, Dec, Jan, Feb"><span class="badge">Recommended</span>
+
+<img src="hogenakkal.jpeg"><h3>Hogenakkal Falls</h3><button onclick="showDetails('hogenakkal')">View Details</button>
+
+</div><div class="card waterfall  " data-month="Jun, Jul, Aug, Sep, Oct"><span class="badge">Recommended</span>
+
+<img src="suruli.jpeg"><h3>Suruli Falls</h3><button onclick="showDetails('suruli')">View Details</button>
+
+</div><div class="card waterfall " data-month="Sep, Oct, Nov, Dec, Jan, Feb, Mar"><span class="badge">Recommended</span>
+
+<img src="monkey.jpeg"><h3>Monkey Falls</h3><button onclick="showDetails('monkeyfalls')">View Details</button>
+
+</div></div></section><script>
+  
+    var params = new URLSearchParams(window.location.search)
+  
+var category = params.get("category")
+  
+
+  
+if(category){
+  
+
+  
+var cards = document.getElementsByClassName("card")
+  
+
+  
+for(var i=0;i<cards.length;i++){
+  
+
+  
+if(!cards[i].classList.contains(category)){
+  
+cards[i].style.display = "none"
+  
+}
+  
+
+  
+}
+  
+
+  
+}
+  
+</script><!-- DETAILS PAGE --><section id="details" class="page"><div class="heroPlace"><img id="placeImage"><div class="heroText"><h1 id="placeName"></h1><p id="placeLocation"></p></div></div><div class="infoGrid"><div class="infoCard"><h3>📅 Best Months to Visit</h3><p id="bestMonths"></p></div><div class="infoCard"><h3>⏰ Best Time of Day</h3><p id="bestTime"></p></div><div class="infoCard"><h3>🌤 Weather Feel</h3><p id="weather"></p></div><div class="infoCard"><h3>👥 Crowd Level</h3><p id="crowd"></p></div><div class="infoCard"><h3>🧭 Ideal For</h3><p id="ideal"></p></div></div><!-- Dynamic Map --><div class="mapContainer">  <iframe id="placeMap"src="https://www.google.com/maps?q=Ooty,+Tamil+Nadu&output=embed"
+
+      width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+
+  </iframe></div><div class="detailsContainer"><h2 class="center">Why this is the Best Time</h2><p class="detailsText" id="whyVisit"></p><h2 class="center">Travel Tip</h2><p class="detailsText" id="travelTip"></p></div><button class="backBtn" onclick="showPage('explore')">← Back to Explore
+
+</button></section><!-- GUIDE PAGE --><section id="guide" class="page"><h2 class="center">Request a Local Travel Guide</h2><form id="guideForm">  <!-- User Details -->  <div class="formGroup"><label for="userName">Full Name <span style="color:red;">*</span></label>
+
+<input type="text" id="userName" placeholder="Enter your full name" required>
+
+  </div>  <div class="formGroup"><label for="contactNumber">Contact Number <span style="color:red;">*</span></label>
+
+<input type="tel" id="contactNumber" placeholder="Enter your contact number" required>
+
+  </div>  <div class="formGroup"><label for="email">Email ID <span style="color:red;">*</span></label>
+
+<input type="email" id="email" placeholder="Enter your email" required>
+
+  </div>  <div class="formGroup"><label for="govtID">Government ID (Aadhaar/Passport) <span style="color:red;">*</span></label>
+
+<input type="text" id="govtID" placeholder="Enter your Aadhaar or Passport number" required>
+
+  </div>  <!-- Destination Selection -->  <div class="formGroup"><label for="destSelect">Select Destination <span style="color:red;">*</span></label>
+
+<select id="destSelect" required>
+
+  <option value="">--Choose a destination--</option>
+
+  <option value="ooty">Ooty</option>
+
+  <option value="kodaikanal">Kodaikanal</option>
+
+  <option value="rameshwaram">Rameshwaram</option>
+
+  <option value="madurai">Madurai</option>
+
+</select>
+
+  </div>  <!-- Preferred Language -->  <div class="formGroup"><label>Preferred Language <span style="color:red;">*</span></label>
+
+<select id="langSelect" required>
+
+  <option value="">--Select language--</option>
+
+  <option value="Tamil">Tamil</option>
+
+  <option value="English">English</option>
+
+  <option value="Hindi">Hindi</option>
+
+  <option value="Other">Other</option>
+
+</select>
+
+<textarea id="otherLanguage" placeholder="If Other, type here" style="display:none; margin-top:8px;"></textarea>
+
+  </div>  <!-- Travel Type -->  <div class="formGroup"><label for="travelType">Travel Type <span style="color:red;">*</span></label>
+
+<select id="travelType" required>
+
+  <option value="">--Select travel type--</option>
+
+  <option value="solo">Solo</option>
+
+  <option value="family">Family</option>
+
+  <option value="friends">Friends</option>
+
+  <option value="couple">Couple</option>
+
+</select>
+
+  </div>  <!-- Number of Travelers -->  <div class="formGroup"><label for="numTravelers">Number of Travelers</label>
+
+<input type="number" id="numTravelers" min="1" max="10" placeholder="Enter number of people">
+
+  </div>  <!-- Special Requests -->  <div class="formGroup"><label for="specialRequests">Special Requests</label>
+
+<textarea id="specialRequests" rows="3" placeholder="Enter any special requests"></textarea>
+
+  </div>  <div class="formGroup">  <label class="checkboxLabel"><input type="checkbox" id="declaration" required>
+
+I hereby declare that all the information provided above is true and accurate.
+
+  </label></div><button type="submit" class="submitBtn">Submit</button>
+
+</form></section><section id="about" class="page aboutPage"><h2 class="center">About Travel Explorer</h2><div class="aboutContainer"><p class="aboutText">Travel Explorer is a seasonal travel planning website designed to help
+
+travelers discover the best destinations in Tamil Nadu based on the
+
+time of the year. Instead of randomly selecting destinations, the
+
+platform recommends places according to seasonal conditions, visitor
+
+crowd levels and travel suitability.
+
+</p><div class="aboutGrid"><div class="aboutCard"><h3>🌦 Season Based Travel</h3><p>Find destinations that are best suited for the current season.</p></div><div class="aboutCard"><h3>🔎 Smart Exploration</h3><p>Search and filter destinations based on categories such as hillstations, waterfalls and heritage sites.</p>
+
+</div><div class="aboutCard"><h3>📍 Detailed Destination Guide</h3><p>Each destination provides useful travel information including weather,crowd level, best visiting time and travel tips.</p>
+
+</div></div></div></section><section id="contact" class="page">  <h2>Contact Us</h2>  <div class="contactWrapper"><!-- Left: Message Box -->
+
+<div class="contactMessage">
+
+  <h3>Send Us a Message</h3>
+
+  <textarea id="contactMessageBox" placeholder="Your message, feedback or review..." ></textarea>
+
+  <div class="starRating">
+
+    <span class="star" data-value="1">&#9733;</span>
+
+    <span class="star" data-value="2">&#9733;</span>
+
+    <span class="star" data-value="3">&#9733;</span>
+
+    <span class="star" data-value="4">&#9733;</span>
+
+    <span class="star" data-value="5">&#9733;</span>
+
+  </div>
+
+  <button id="submitContact">Submit</button>
+
+</div>
+
+
+
+<!-- Right: Website Information -->
+
+<div class="contactInfo">
+
+  <h3>Get in Touch</h3>
+
+  <p><strong>Phone:</strong> +91 9876543210</p>
+
+  <p><strong>Email:</strong> info@travelexplorer.com</p>
+
+  <p><strong>Address:</strong> 123, Travel Street, Chennai, Tamil Nadu, India</p>
+
+  
+
+  <h3>Follow Us</h3>
+
+  <p>
+
+    <a href="#" target="_blank">Facebook</a> | 
+
+    <a href="#" target="_blank">Instagram</a> | 
+
+    <a href="#" target="_blank">Twitter</a> | 
+
+    <a href="#" target="_blank">WhatsApp</a>
+
+  </p>
+
+</div>
+
+  </div></section><script>
+  
+
+  
+    // Star rating interaction
+  
+const stars = document.querySelectorAll(".star");
+  
+let selectedRating = 0;
+  
+
+  
+stars.forEach(star => {
+  
+  star.addEventListener("mouseover", () => {
+  
+    stars.forEach(s => s.classList.remove("hovered"));
+  
+    for (let i = 0; i < star.dataset.value; i++) {
+  
+      stars[i].classList.add("hovered");
+  
+    }
+  
+  });
+  
+
+  
+  star.addEventListener("mouseout", () => {
+  
+    stars.forEach(s => s.classList.remove("hovered"));
+  
+    for (let i = 0; i < selectedRating; i++) {
+  
+      stars[i].classList.add("selected");
+  
+    }
+  
+  });
+  
+
+  
+  star.addEventListener("click", () => {
+  
+    selectedRating = star.dataset.value;
+  
+    stars.forEach(s => s.classList.remove("selected"));
+  
+    for (let i = 0; i < selectedRating; i++) {
+  
+      stars[i].classList.add("selected");
+  
+    }
+  
+  });
+  
+});
+  
+
+  
+// Submit button alert
+  
+document.getElementById("submitContact").addEventListener("click", () => {
+  
+  const message = document.getElementById("contactMessageBox").value.trim();
+  
+  if (!message) {
+  
+    alert("Please write a message before submitting.");
+  
+    return;
+  
+  }
+  
+  alert(`Thank you for your feedback! Rating: ${selectedRating || 0} star(s)`);
+  
+  document.getElementById("contactMessageBox").value = "";
+  
+  selectedRating = 0;
+  
+  stars.forEach(s => s.classList.remove("selected"));
+  
+});
+  
+
+  
+
+  
+function showPage(page){
+  
+
+  
+var pages=document.getElementsByClassName("page")
+  
+
+  
+for(var i=0;i<pages.length;i++){
+  
+pages[i].style.display="none"
+  
+}
+  
+
+  
+document.getElementById(page).style.display="block"
+  
+
+  
+}
+  
+
+  
+
+  
+showPage("home")
+  
+
+  
+
+  
+
+  
+function filterType(type){
+  
+
+  
+var cards=document.getElementsByClassName("card")
+  
+
+  
+for(var i=0;i<cards.length;i++){
+  
+
+  
+if(type=="all"){
+  
+cards[i].style.display="block"
+  
+}
+  
+
+  
+else if(cards[i].classList.contains(type)){
+  
+cards[i].style.display="block"
+  
+}
+  
+
+  
+else{
+  
+cards[i].style.display="none"
+  
+}
+  
+
+  
+}
+  
+
+  
+}
+  
+
+  
+
+  
+
+  
+function filterSeason(season){
+  
+
+  
+var cards=document.getElementsByClassName("card")
+  
+
+  
+for(var i=0;i<cards.length;i++){
+  
+
+  
+if(cards[i].classList.contains(season)){
+  
+cards[i].style.display="block"
+  
+}
+  
+
+  
+}
+  
+
+  
+}
+  
+
+  
+
+  
+
+  
+function filterTime(time){
+  
+
+  
+var cards=document.getElementsByClassName("card")
+  
+
+  
+for(var i=0;i<cards.length;i++){
+  
+
+  
+if(time=="all"){
+  
+cards[i].style.display="block"
+  
+}
+  
+
+  
+else if(cards[i].classList.contains(time)){
+  
+cards[i].style.display="block"
+  
+}
+  
+
+  
+else{
+  
+cards[i].style.display="none"
+  
+}
+  
+
+  
+}
+  
+
+  
+}
+  
+
+  
+
+  
+
+  
+function resetFilters(){
+  
+
+  
+var cards=document.getElementsByClassName("card")
+  
+
+  
+for(var i=0;i<cards.length;i++){
+  
+cards[i].style.display="block"
+  
+}
+  
+
+  
+}
+  
+
+  
+
+  
+
+  
+function searchPlace(){
+  
+
+  
+var input=document.getElementById("searchBox").value.toLowerCase()
+  
+
+  
+var cards=document.getElementsByClassName("card")
+  
+
+  
+for(var i=0;i<cards.length;i++){
+  
+
+  
+var text=cards[i].innerText.toLowerCase()
+  
+
+  
+if(text.includes(input)){
+  
+cards[i].style.display="block"
+  
+}
+  
+else{
+  
+cards[i].style.display="none"
+  
+}
+  
+
+  
+}
+  
+
+  
+}
+  
+
+  
+function showDetails(place) {
+  
+    showPage("details");
+  
+
+  
+    var data = {
+  
+        ooty: {
+  
+            image: "ooty.jpeg",
+  
+            name: "Ooty",
+  
+            location: "Nilgiris District, Tamil Nadu",
+  
+            months: "October - June",
+  
+            time: "Morning and Evening",
+  
+            weather: "Cool Climate",
+  
+            crowd: "Moderate",
+  
+            ideal: "Nature Lovers, Couples",
+  
+            why: "Ooty is one of the most popular hill stations in Tamil Nadu with cool weather, tea gardens and scenic mountain views.",
+  
+            tip: "Visit the Botanical Garden and take the Nilgiri Mountain Railway for a scenic ride."
+  
+        },
+  
+        kodaikanal: {
+  
+            image: "kodaikanal.jpeg",
+  
+            name: "Kodaikanal",
+  
+            location: "Dindigul District, Tamil Nadu",
+  
+            months: "October - February",
+  
+            time: "Morning",
+  
+            weather: "Cool and Misty",
+  
+            crowd: "Moderate",
+  
+            ideal: "Families, Nature Travelers",
+  
+            why: "Kodaikanal offers pleasant weather, beautiful lakes and misty hills which make it ideal for sightseeing.",
+  
+            tip: "Boating in Kodaikanal Lake early morning gives the best experience."
+  
+        },
+  
+        yercaud: {
+  
+            image: "yercaud.jpeg",
+  
+            name: "Yercaud",
+  
+            location: "Salem District, Tamil Nadu",
+  
+            months: "October - June",
+  
+            time: "Morning",
+  
+            weather: "Pleasant",
+  
+            crowd: "Low to Moderate",
+  
+            ideal: "Nature Lovers, Families",
+  
+            why: "Yercaud is known for coffee plantations and peaceful hill views, making it a calm getaway from city life.",
+  
+            tip: "Visit Lady's Seat viewpoint for sunset views."
+  
+        },
+  
+        coonoor: {
+  
+            image: "coonoor.jpeg",
+  
+            name: "Coonoor",
+  
+            location: "Nilgiris District, Tamil Nadu",
+  
+            months: "October - May",
+  
+            time: "Morning",
+  
+            weather: "Cool",
+  
+            crowd: "Moderate",
+  
+            ideal: "Couples, Nature Lovers",
+  
+            why: "Coonoor is famous for tea gardens and scenic viewpoints like Dolphin’s Nose.",
+  
+            tip: "Take the Nilgiri toy train ride between Ooty and Coonoor."
+  
+        },
+  
+        rameshwaram: {
+  
+            image: "rameshwaram.jpeg",
+  
+            name: "Rameshwaram Temple",
+  
+            location: "Ramanathapuram District, Tamil Nadu",
+  
+            months: "October - March",
+  
+            time: "Early Morning",
+  
+            weather: "Pleasant to Warm",
+  
+            crowd: "High during festivals",
+  
+            ideal: "Pilgrims, Heritage Visitors",
+  
+            why: "Rameshwaram is one of the holiest pilgrimage sites in India and offers spiritual and historical significance.",
+  
+            tip: "Visit the temple early morning to avoid long queues."
+  
+        },
+  
+        madurai: {
+  
+            image: "madurai.jpeg",
+  
+            name: "Meenakshi Amman Temple",
+  
+            location: "Madurai District, Tamil Nadu",
+  
+            months: "October - March",
+  
+            time: "Morning",
+  
+            weather: "Warm",
+  
+            crowd: "High",
+  
+            ideal: "Pilgrims, Culture Lovers",
+  
+            why: "Madurai is famous for the Meenakshi Amman Temple with colorful towers and rich cultural heritage.",
+  
+            tip: "Attend the evening temple ceremony for a unique spiritual experience."
+  
+        },
+  
+        chidambaram: {
+  
+            image: "chidambaram.jpeg",
+  
+            name: "Nataraja Temple",
+  
+            location: "Cuddalore District, Tamil Nadu",
+  
+            months: "November - February",
+  
+            time: "Morning",
+  
+            weather: "Pleasant",
+  
+            crowd: "Moderate",
+  
+            ideal: "Pilgrims, History Lovers",
+  
+            why: "Chidambaram temple is dedicated to Lord Shiva as the cosmic dancer and is an important spiritual center.",
+  
+            tip: "Explore the temple architecture and nearby heritage streets."
+  
+        },
+  
+        kanchipuram: {
+  
+            image: "kanchipuram.jpeg",
+  
+            name: "Ekambareswarar Temple",
+  
+            location: "Kanchipuram District, Tamil Nadu",
+  
+            months: "November - February",
+  
+            time: "Morning",
+  
+            weather: "Warm",
+  
+            crowd: "Moderate",
+  
+            ideal: "Pilgrims, Cultural Visitors",
+  
+            why: "Kanchipuram is known as the city of thousand temples and is famous for silk sarees and historic temples.",
+  
+            tip: "Visit the silk saree markets after temple darshan."
+  
+        },
+  
+        tada: {
+  
+            image: "tada.jpeg",
+  
+            name: "Tada Falls",
+  
+            location: "Andhra Pradesh – Tamil Nadu Border",
+  
+            months: "July - October",
+  
+            time: "Morning",
+  
+            weather: "Cool",
+  
+            crowd: "Low",
+  
+            ideal: "Trekkers, Adventure Lovers",
+  
+            why: "Tada Falls offers a scenic trekking trail leading to a refreshing waterfall surrounded by forest.",
+  
+            tip: "Wear trekking shoes as the path can be slippery."
+  
+        },
+  
+        courtallam: {
+  
+            image: "courtallam.jpeg",
+  
+            name: "Courtallam Falls",
+  
+            location: "Tenkasi District, Tamil Nadu",
+  
+            months: "June - September",
+  
+            time: "Morning",
+  
+            weather: "Refreshing",
+  
+            crowd: "High during monsoon",
+  
+            ideal: "Families, Nature Lovers",
+  
+            why: "Courtallam is known as the 'Spa of South India' because of its therapeutic waterfalls.",
+  
+            tip: "Visit during monsoon to see the falls at full strength."
+  
+        },
+  
+        hogenakkal: {
+  
+            image: "hogenakkal.jpeg",
+  
+            name: "Hogenakkal Falls",
+  
+            location: "Dharmapuri District, Tamil Nadu",
+  
+            months: "October - February",
+  
+            time: "Morning",
+  
+            weather: "Pleasant",
+  
+            crowd: "Moderate",
+  
+            ideal: "Adventure Seekers",
+  
+            why: "Hogenakkal Falls is often called the 'Niagara of India' due to its powerful waterfalls.",
+  
+            tip: "Try the traditional coracle boat ride."
+  
+        },
+  
+        suruli: {
+  
+            image: "suruli.jpeg",
+  
+            name: "Suruli Falls",
+  
+            location: "Theni District, Tamil Nadu",
+  
+            months: "June - October",
+  
+            time: "Morning",
+  
+            weather: "Cool",
+  
+            crowd: "Low",
+  
+            ideal: "Nature Lovers",
+  
+            why: "Suruli Falls is located near the Meghamalai hills and surrounded by forest landscapes.",
+  
+            tip: "Carry comfortable walking shoes."
+  
+        },
+  
+        monkeyfalls: {
+  
+            image: "monkeyfalls.jpeg",
+  
+            name: "Monkey Falls",
+  
+            location: "Coimbatore District, Tamil Nadu",
+  
+            months: "July - October",
+  
+            time: "Morning",
+  
+            weather: "Cool",
+  
+            crowd: "Moderate",
+  
+            ideal: "Families, Tourists",
+  
+            why: "Monkey Falls is a beautiful waterfall located near Pollachi and is easily accessible for visitors.",
+  
+            tip: "Visit early morning to avoid crowds."
+  
+        }
+  
+    };
+  
+
+  
+    var placeData = data[place];
+  
+
+  
+    // Update info cards
+  
+    document.getElementById("placeImage").src = placeData.image;
+  
+    document.getElementById("placeName").innerText = placeData.name;
+  
+    document.getElementById("placeLocation").innerText = placeData.location;
+  
+    document.getElementById("bestMonths").innerText = placeData.months;
+  
+    document.getElementById("bestTime").innerText = placeData.time;
+  
+    document.getElementById("weather").innerText = placeData.weather;
+  
+    document.getElementById("crowd").innerText = placeData.crowd;
+  
+    document.getElementById("ideal").innerText = placeData.ideal;
+  
+    document.getElementById("whyVisit").innerText = placeData.why;
+  
+    document.getElementById("travelTip").innerText = placeData.tip;
+  
+
+  
+    // Update dynamic Google Map
+  
+    document.getElementById("placeMap").src =
+  
+        "https://www.google.com/maps?q=" + encodeURIComponent(placeData.name + ", " + placeData.location) + "&output=embed";
+  
+}
+  
+
+  
+
+  
+
+  
+function openCategory(type){
+  
+
+  
+showPage("explore")
+  
+
+  
+var cards=document.getElementsByClassName("card")
+  
+
+  
+for(var i=0;i<cards.length;i++){
+  
+
+  
+if(cards[i].classList.contains(type)){
+  
+cards[i].style.display="block"
+  
+}
+  
+else{
+  
+cards[i].style.display="none"
+  
+}
+  
+
+  
+}
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+}
+  
+
+  
+
+  
+function showRecommendedBadge(){
+  
+
+  
+var months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+  
+
+  
+var currentMonth=months[new Date().getMonth()]
+  
+
+  
+var cards=document.getElementsByClassName("card")
+  
+
+  
+for(var i=0;i<cards.length;i++){
+  
+
+  
+var bestMonths=cards[i].getAttribute("data-month")
+  
+
+  
+if(bestMonths && bestMonths.includes(currentMonth)){
+  
+cards[i].querySelector(".badge").style.display="block"
+  
+}
+  
+
+  
+}
+  
+
+  
+}
+  
+
+  
+
+  
+
+  
+showRecommendedBadge();
+  
+
+  
+
+  
+var months=["January","February","March","April","May","June","July","August","September","October","November","December"]
+  
+
+  
+var currentMonth=months[new Date().getMonth()]
+  
+
+  
+document.getElementById("monthTitle").innerText=
+  
+"Best Places to Visit in " + currentMonth
+  
+
+  
+
+  
+
+  
+
+  
+// Show/hide textarea when "Other" is selected
+  
+document.getElementById("langSelect").addEventListener("change", function(){
+  
+  var otherLang = document.getElementById("otherLanguage");
+  
+  if(this.value === "Other"){
+  
+    otherLang.style.display = "block";
+  
+    otherLang.required = true;
+  
+  } else {
+  
+    otherLang.style.display = "none";
+  
+    otherLang.required = false;
+  
+  }
+  
+});
+  
+
+  
+// Form submit with validation and alert
+  
+document.getElementById("guideForm").addEventListener("submit", function(e){
+  
+  e.preventDefault();
+  
+
+  
+  var userName = document.getElementById("userName").value.trim();
+  
+  var contact = document.getElementById("contactNumber").value.trim();
+  
+  var email = document.getElementById("email").value.trim();
+  
+  var id = document.getElementById("govtID").value.trim();
+  
+  var dest = document.getElementById("destSelect").value;
+  
+  var lang = document.getElementById("langSelect").value;
+  
+  var otherLang = document.getElementById("otherLanguage").value.trim();
+  
+  var type = document.getElementById("travelType").value;
+  
+  var num = document.getElementById("numTravelers").value || 1;
+  
+  var special = document.getElementById("specialRequests").value.trim();
+  
+
+  
+  // Simple validation
+  
+  if(!userName || !contact || !email || !id || !dest || !lang || !type){
+  
+    alert("Please fill all required fields.");
+  
+    return;
+  
+  }
+  
+  if(lang === "Other" && !otherLang){
+  
+    alert("Please specify the other language.");
+  
+    return;
+  
+  }
+  
+
+  
+  // Build confirmation message
+  
+  var message = 
+  
+    "Your guide request has been submitted!\n\n" +
+  
+    "Name: " + userName + "\n" +
+  
+    "Contact: " + contact + "\n" +
+  
+    "Email: " + email + "\n" +
+  
+    "Govt ID: " + id + "\n" +
+  
+    "Destination: " + dest + "\n" +
+  
+    "Language: " + (lang === "Other" ? otherLang : lang) + "\n" +
+  
+    "Travel Type: " + type + "\n" +
+  
+    "Number of Travelers: " + num + "\n" +
+  
+    (special ? "Special Requests: " + special : "");
+  
+
+  
+  alert(message);
+  
+  this.reset();
+  
+  document.getElementById("otherLanguage").style.display = "none"; // hide textarea after reset
+  
+});
+  
+
+  
+
+  
+
+  
+document.getElementById("guideForm").addEventListener("submit", function(e){
+  
+  e.preventDefault();
+  
+
+  
+  var declarationChecked = document.getElementById("declaration").checked;
+  
+  if(!declarationChecked){
+  
+    alert("Please confirm the declaration before submitting.");
+  
+    return;
+  
+  }
+  
+
+  
+  // ... rest of your form submission code (alert with details)
+  
+});
+  
+
+  
+</script><footer class="siteFooter">  <p>© 2026 Travel Explorer. All Rights Reserved.</p></body></html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Travel Explorer</title>
+<link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+
+<header>
+<h2>Travel Explorer</h2>
+
+<nav>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('explore')">Explore</a>
+<a onclick="showPage('guide')">Guide</a>
+<a onclick="showPage('about')">About</a>
+</nav>
+</header>
+
+
+<!-- HOME PAGE -->
+
+<section id="home" class="page">
+
+<div class="hero">
+<h1>Welcome to Travel Planning Guide</h1>
+<p>Plan your visit to Tamil Nadu based on season and crowd</p>
+</div>
+
+<h2 class="center">Categories</h2>
+
+<div class="category">
+
+<div class="card">
+<img src="beach.jpeg">
+<h3>Beaches</h3>
+</div>
+
+<div class="card">
+<img src="hill.jpeg">
+<h3>Hill Stations</h3>
+</div>
+
+<div class="card">
+<img src="heritage.jpeg">
+<h3>Heritage</h3>
+</div>
+
+</div>
+
+
+<h2 class="center">Best Places This Month</h2>
+
+<div class="destination">
+
+<div class="card">
+<img src="kodaikanal.jpeg">
+<h3>Kodaikanal</h3>
+</div>
+
+<div class="card">
+<img src="rameshwaram.jpeg">
+<h3>Rameshwaram</h3>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EXPLORE PAGE -->
+
+<section id="explore" class="page">
+
+<h2 class="center">Explore Destinations</h2>
+
+<input type="text" id="searchBox" placeholder="Search destination..." onkeyup="searchPlace()">
+
+<div class="filters">
+
+<div>
+<h3>Type</h3>
+<label><input type="radio" name="type" onclick="filterType('all')" checked> All</label>
+<label><input type="radio" name="type" onclick="filterType('hill')"> Hill</label>
+<label><input type="radio" name="type" onclick="filterType('temple')"> Temple</label>
+<label><input type="radio" name="type" onclick="filterType('waterfall')"> Waterfall</label>
+</div>
+
+<div>
+<h3>Season</h3>
+<label><input type="checkbox" onclick="filterSeason('summer')"> Summer</label>
+<label><input type="checkbox" onclick="filterSeason('winter')"> Winter</label>
+<label><input type="checkbox" onclick="filterSeason('monsoon')"> Monsoon</label>
+</div>
+
+<div>
+<h3>Best Time</h3>
+<select onchange="filterTime(this.value)">
+<option value="all">All</option>
+<option value="morning">Morning</option>
+<option value="evening">Evening</option>
+</select>
+</div>
+
+</div>
+
+<button onclick="resetFilters()">Reset Filters</button>
+
+
+<div class="destination">
+
+<div class="card hill summer morning">
+<img src="ooty.jpeg">
+<h3>Ooty</h3>
+<button onclick="showDetails('ooty')">View Details</button>
+</div>
+
+<div class="card hill winter morning">
+<img src="kodaikanal.jpeg">
+<h3>Kodaikanal</h3>
+<button onclick="showDetails('kodaikanal')">View Details</button>
+</div>
+
+<div class="card temple winter morning">
+<img src="rameshwaram.jpeg">
+<h3>Rameshwaram</h3>
+<button onclick="showDetails('rameshwaram')">View Details</button>
+</div>
+
+<div class="card waterfall monsoon morning">
+<img src="tada.jpeg">
+<h3>Tada Falls</h3>
+<button onclick="showDetails('tada')">View Details</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DETAILS PAGE -->
+
+
+
+<section id="details" class="page">
+
+<h2 id="placeTitle"></h2>
+
+<p id="placeInfo"></p>
+
+<button onclick="showPage('explore')">Back to Explore</button>
+
+</section>
+
+
+
+
+<!-- GUIDE PAGE -->
+
+<section id="guide" class="page">
+
+<h2>Request a Local Travel Guide</h2>
+
+<form>
+
+<p>Select Destination</p>
+
+<label><input type="radio" name="dest"> Ooty</label>
+<label><input type="radio" name="dest"> Kodaikanal</label>
+<label><input type="radio" name="dest"> Rameshwaram</label>
+
+<p>Preferred Language</p>
+
+<label><input type="radio" name="lang"> Tamil</label>
+<label><input type="radio" name="lang"> English</label>
+
+<p>Travel Type</p>
+
+<select>
+<option>Solo</option>
+<option>Family</option>
+<option>Friends</option>
+</select>
+
+<br><br>
+
+<button type="submit">Submit</button>
+
+</form>
+
+</section>
+
+
+<!-- ABOUT PAGE -->
+
+<section id="about" class="page">
+
+<h2>About</h2>
+
+<p>
+Travel Explorer helps travelers find the best destinations in Tamil Nadu
+based on season, crowd and travel preferences.
+</p>
+
+</section>
+
+
+<script>
+
+
+function showPage(page){
+
+var pages=document.getElementsByClassName("page")
+
+for(var i=0;i<pages.length;i++){
+pages[i].style.display="none"
+}
+
+document.getElementById(page).style.display="block"
+
+}
+
+
+showPage("home")
+
+
+
+function filterType(type){
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+
+if(type=="all"){
+cards[i].style.display="block"
+}
+
+else if(cards[i].classList.contains(type)){
+cards[i].style.display="block"
+}
+
+else{
+cards[i].style.display="none"
+}
+
+}
+
+}
+
+
+
+function filterSeason(season){
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+
+if(cards[i].classList.contains(season)){
+cards[i].style.display="block"
+}
+
+}
+
+}
+
+
+
+function filterTime(time){
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+
+if(time=="all"){
+cards[i].style.display="block"
+}
+
+else if(cards[i].classList.contains(time)){
+cards[i].style.display="block"
+}
+
+else{
+cards[i].style.display="none"
+}
+
+}
+
+}
+
+
+
+function resetFilters(){
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+cards[i].style.display="block"
+}
+
+}
+
+
+
+function searchPlace(){
+
+var input=document.getElementById("searchBox").value.toLowerCase()
+
+var cards=document.getElementsByClassName("card")
+
+for(var i=0;i<cards.length;i++){
+
+var text=cards[i].innerText.toLowerCase()
+
+if(text.includes(input)){
+cards[i].style.display="block"
+}
+else{
+cards[i].style.display="none"
+}
+
+}
+
+}
+
+function showDetails(detailsId){
+
+var pages = document.getElementsByClassName("page")
+
+for(var i=0;i<pages.length;i++){
+pages[i].style.display="none"
+}
+
+document.getElementById(detailsId).style.display="block"
+
+}
+
+function showDetails(place){
+
+showPage("details")
+
+if(place=="ooty"){
+document.getElementById("placeTitle").innerText="Ooty"
+document.getElementById("placeInfo").innerText="Best months: Oct-Jun. Pleasant hill station."
+}
+
+if(place=="kodaikanal"){
+document.getElementById("placeTitle").innerText="Kodaikanal"
+document.getElementById("placeInfo").innerText="Best months: Oct-Feb. Cool weather."
+}
+
+if(place=="rameshwaram"){
+document.getElementById("placeTitle").innerText="Rameshwaram"
+document.getElementById("placeInfo").innerText="Best months: Oct-Mar. Famous temple destination."
+}
+
+if(place=="tada"){
+document.getElementById("placeTitle").innerText="Tada Falls"
+document.getElementById("placeInfo").innerText="Best months: Monsoon season for waterfalls."
+}
+
+
+
+
+}
+
+
+</script>
+
+</body>
+</html>

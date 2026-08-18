@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Travel Explorer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<header>
+<h1 class="logo">Travel Explorer</h1>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#explore">Explore</a>
+<a href="#guide">Guide</a>
+<a href="#about">About</a>
+</nav>
+</header>
+
+
+<!-- HOME SECTION -->
+
+<section id="home" class="hero">
+
+<div class="hero-text">
+<h2>A Travel Planning Guide</h2>
+<p>Plan your visit based on season, time and crowd</p>
+</div>
+
+</section>
+
+
+<!-- WHEN TO VISIT -->
+
+<section class="visit">
+
+<h2>When to Visit Tamil Nadu</h2>
+
+<div class="category">
+
+<div class="card">
+<img src="beach.jpg">
+<p>Beaches</p>
+</div>
+
+<div class="card">
+<img src="hill.jpg">
+<p>Hill Station</p>
+</div>
+
+<div class="card">
+<img src="heritage.jpg">
+<p>Heritage</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- EXPLORE SECTION -->
+
+<section id="explore">
+
+<h2>Explore Destinations</h2>
+
+<div class="places">
+
+<div class="place">
+<img src="tada.jpg">
+<h3>Tada Falls</h3>
+<p>Best Month : Oct - Jan</p>
+<button onclick="details('Tada Falls')">View Details</button>
+</div>
+
+<div class="place">
+<img src="rameshwaram.jpg">
+<h3>Rameswaram</h3>
+<p>Best Month : Oct - Mar</p>
+<button onclick="details('Rameswaram')">View Details</button>
+</div>
+
+<div class="place">
+<img src="ooty.jpg">
+<h3>Ooty</h3>
+<p>Best Month : Oct - Jun</p>
+<button onclick="details('Ooty')">View Details</button>
+</div>
+
+<div class="place">
+<img src="kodaikanal.jpg">
+<h3>Kodaikanal</h3>
+<p>Best Month : Oct - Feb</p>
+<button onclick="details('Kodaikanal')">View Details</button>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- GUIDE FORM -->
+
+<section id="guide">
+
+<h2>Request a Local Travel Guide</h2>
+
+<form>
+
+<label>Select Destination</label><br>
+
+<input type="radio" name="place">Tada Falls
+<input type="radio" name="place">Rameswaram
+<input type="radio" name="place">Ooty
+<input type="radio" name="place">Kodaikanal
+
+<br><br>
+
+<label>When are you planning to visit</label><br>
+
+<input type="radio" name="time">January-March
+<input type="radio" name="time">April-June
+<input type="radio" name="time">July-September
+<input type="radio" name="time">October-December
+
+<br><br>
+
+<label>Preferred Language</label><br>
+
+<input type="radio" name="lang">Tamil
+<input type="radio" name="lang">English
+
+<br><br>
+
+<label>Travelling As</label><br>
+
+<select>
+<option>Solo</option>
+<option>Family</option>
+<option>Friends</option>
+</select>
+
+<br><br>
+
+<button type="submit">Submit</button>
+
+</form>
+
+</section>
+
+
+
+<!-- ABOUT SECTION -->
+
+<section id="about">
+
+<h2>About Us</h2>
+
+<p>
+This platform is designed to help travelers explore popular tourist destinations in Tamil Nadu by providing destination details and guide assistance.
+</p>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>Follow us</p>
+
+<p>Email : TravelExplorer@gmail.com</p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
